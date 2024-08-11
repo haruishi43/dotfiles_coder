@@ -13,23 +13,20 @@ sudo apt install -y \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-# chsh -s $(which zsh)
+sudo chsh -s $(which zsh) $USER
 
 ### Install nvim
 sudo apt install -y neovim
+# change alias
+sudo update-alternatives --install /usr/bin/vi vi $NVIM_PATH 60
+sudo update-alternatives --auto vi
+sudo update-alternatives --install /usr/bin/vim vim $NVIM_PATH 60
+sudo update-alternatives --auto vim
+sudo update-alternatives --install /usr/bin/editor editor $NVIM_PATH 60
+sudo update-alternatives --auto editor
 
 ### Install tmux
-if hash tmux 2>/dev/null; then
-    echo "Tmux is already installed"
-else
-    echo "Tmux is not installed!"
-    sudo apt install -y automake \
-                    build-essential \
-                    pkg-config \
-                    libevent-dev \
-                    libncurses5-dev
-    sudo apt install -y tmux
-fi
+sudo apt install -y tmux
 
 # tmux package manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -49,7 +46,3 @@ git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins
 
 ### Get imgcat command
 sudo curl -o /usr/local/bin/imgcat -O https://gitlab.com/wincent/wincent/raw/master/roles/dotfiles/files/.zsh/bin/imgcat && sudo chmod +x /usr/local/bin/imgcat
-
-### Install some pip packages that are needed
-pip install -U pip
-pip install gpustat
