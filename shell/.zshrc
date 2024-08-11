@@ -123,9 +123,6 @@ function gdrive_download() {
   rm -rf /tmp/cookies.txt
 }
 
-# my scripts
-alias inotify-consumers="/home/$USER/scripts/inotify-consumers"
-
 # Anaconda (pyenv conflicts)
 # Note that there can be only 1 version of anaconda and the version needs to be updated...
 alias activate="source $PYENV_ROOT/versions/anaconda3-2021.05/bin/activate"
