@@ -19,6 +19,7 @@ SHELL_FILES=(
 
 CONFIG_FILES=(
     .gitconfig
+    .config/nvim
 )
 
 
