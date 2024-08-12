@@ -16,7 +16,11 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 chsh -s $(which zsh) $USER
 
 ### Install nvim
-sudo apt install -y neovim
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+. $NVM_DIR/nvm.sh
+nvm install v18
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo apt install neovim -y
 # change alias
 sudo update-alternatives --install /usr/bin/vi vi $NVIM_PATH 60
 sudo update-alternatives --auto vi
@@ -35,9 +39,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 if hash pyenv 2>/dev/null; then
     echo "pyenv installed"
 else
-    sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-        libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-        xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+    sudo apt install -y build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev curl git \
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
     git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 fi
 git clone git://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
